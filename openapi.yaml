@@ -1,0 +1,84 @@
+openapi: 3.1.1
+info:
+  title: STAC API - Download
+  version: 1.0.0
+  description: >-
+    This is an OpenAPI definition of the SpatioTemporal Asset Catalog API -
+    Download specification.
+  contact:
+    name: STAC Specification
+    url: http://stacspec.org
+  license:
+    name: Apache License 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0
+tags:
+  - name: Download
+    description: All endpoints related to STAC API - Download
+paths:
+  /collections/{collectionId}/items/{itemId}/download/{assetId}:
+    get:
+      tags:
+        - Download
+      summary: the Download endpoint
+      description: >-
+        Returns the binary data of a STAC asset.
+      operationId: getDownload
+      parameters:
+        - name: collectionId
+          in: path
+          required: true
+          description: The ID of the collection containing the item.
+          schema:
+            type: string
+        - name: itemId
+          in: path
+          required: true
+          description: The ID of the item containing the asset.
+          schema:
+            type: string
+        - name: assetId
+          in: path
+          required: true
+          description: The ID of the asset to download.
+          schema:
+            type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/BinaryData'
+        '307':
+          $ref: '#/components/responses/BinaryData'
+        '404':
+          $ref: '#/components/responses/ClientError'
+        '500':
+          $ref: '#/components/responses/ServerError'
+components:
+  schemas:
+    exception:
+      type: object
+      description: >-
+        Information about the exception: an error code plus an optional
+        description.
+      required:
+        - code
+      properties:
+        code:
+          type: string
+        description:
+          type: string
+  responses:
+    BinaryData:
+      description: Successful binary response
+      content:
+        application/octet-stream: {}
+    ClientError:
+      description: A client error occurred.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/exception'
+    ServerError:
+      description: A server error occurred.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/exception'
