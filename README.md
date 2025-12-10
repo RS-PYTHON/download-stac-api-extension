@@ -45,6 +45,6 @@ set in the [Location](https://developer.mozilla.org/en-US/docs/Web/HTTP/Referenc
 
 ---
 
-![](docs/images/banner_logo.jpg)
+![](https://raw.githubusercontent.com/RS-PYTHON/.github/refs/heads/main/profile/banner_logo.jpg)
 
 This project is funded by the EU and ESA.
