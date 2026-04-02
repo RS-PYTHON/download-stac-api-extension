@@ -12,13 +12,24 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-extends: "spectral:oas"
-rules:
-  openapi-tags: off
-  info-contact: off
-  oas3-api-servers: off
-  oas3-schema: warn
-  tag-description: true
-  oas3-parameter-description: true
-  oas3-unused-component: off
-  operation-operationId: off
+header:
+  license:
+    spdx-id: Apache-2.0
+    copyright-owner: Airbus
+
+  paths-ignore:
+    - '**/*.csv'
+    - '**/*.env'
+    - '**/*.json'
+    - '**/*.lock'
+    - '**/*.md'
+    - '**/*.raw'
+    - '**/Dockerfile*'
+    - '**/.gitignore'
+    - '.gitmodules'
+    - '.safety-project.ini'
+    - '.trivyignore'
+    - 'LICENSE'
+    - 'NOTICE'
+
+  comment: on-failure
